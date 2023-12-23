@@ -18,10 +18,11 @@ init python:
     off = ImageDissolve("eye.png", 2.0, 50, reverse=True) 
 
 label start:
-
+    # Начало
     scene bg night
     play music musnormal
     $ charactername = renpy.input("Как будут звать главного героя?")
+
     show sleep:
         xalign -0.1 yalign 1.6
     "Однажны главному герою приснился
@@ -29,6 +30,7 @@ label start:
     "Его через приложение поддерживают люди со всего
 мира,говорят ему мотивирующие слова,и он всех побеждает,даже оказывается в
 топ-игроков мира"
+    # Анимация закрывание глаз
     scene black with off
     pause 1.0
     scene bg day with onn
@@ -37,6 +39,6 @@ label start:
     e "А почему бы не создать такое приложение"
     hide nosleep1
     show egor
-    e "Буду изучать JavaScript и другие языки программирования,чтобы воплотить свое желание в реальность"
+    e "Буду изучать JavaScript и другие языки программирования,чтобы воплотить свое желание в реальность."
         
     return
