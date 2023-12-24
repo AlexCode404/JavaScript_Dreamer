@@ -23,7 +23,7 @@ define gui.show_name = True
 
 ## Версия игры.
 
-define config.version = "0.1beta"
+define config.version = "0.2beta"
 
 
 ## Текст, помещённый в экран "Об игре". Поместите текст между тройными скобками.
