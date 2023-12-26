@@ -1,4 +1,3 @@
-# Вы можете расположить сценарий своей игры в этом файле.
 
 # Определение персонажей игры.
 define e = Character('[charactername]', color="#36c036")
@@ -6,6 +5,18 @@ define a = Character('Прохожий', color="#b0c72e")
 define f = Character('Друг', color="#267e23")
 define will = Character('Начальник компании', color="#ff0707")
 define npc = Character('Сотрудник компании', color="#23297e")
+
+init :
+    transform txt_up:
+        yalign 1.5
+        linear 15.0 yalign -1.5
+
+label creditz:
+    scene black with dissolve
+    show text " {color=#fdfdfd}{size=+90} КОНЕЦ {/size} {p} {p} {p} {p} {p} {p} {p} {p} {p}  {p} {p} {p} {p} {p} {p} {p} {p} {p} {p}               Материалы взяты из группы: https://vk.com/ayri_attic {p} Music: Magic Escape Room by Kevin MacLeod {p}Free download: https://filmmusic.io/song/10113-magic-escape-room {p}Licensed under CC BY 4.0: https://filmmusic.io/standard-license {p} Music: Space Jazz by Kevin MacLeod {p}Free download: https://filmmusic.io/song/8328-space-jazz {p}Licensed under CC BY 4.0: https://filmmusic.io/standard-license {p}Music: Waltz Primordial (feat. Alexander Nakarada) by Kevin MacLeod {p}Free download: https://filmmusic.io/song/7929-waltz-primordial-feat-alexander-nakarada {p}Licensed under CC BY 4.0: https://filmmusic.io/standard-license {p} Music: Nuh Na Nuh by Kevin MacLeod {p} Free download: https://filmmusic.io/song/6429-nuh-na-nuh {p} Licensed under CC BY 4.0: https://filmmusic.io/standard-license{/color}" at txt_up                                 
+    pause 90
+    return 
+
 
 #Слои спрайтов
 layeredimage friend:
@@ -26,6 +37,7 @@ layeredimage npccharacter:
 define audio.musnormal = "audio/gametheme.ogg"
 define audio.musstreet = "audio/street.ogg"
 define audio.musoffice = "audio/officemusic.ogg"
+define audio.end = "audio/thend.ogg"
 
 # Вместо использования оператора image можете просто
 # складывать все ваши файлы изображений в папку images.
@@ -55,6 +67,7 @@ label start:
     scene black with off
     pause 1.0
     scene bg day with onn
+    # Анимация закончилась
     show nosleep1:
         xalign -0.1 yalign 1.6
     "Утром главный герой проснулся и поймал себя на мысли,что забыл
@@ -93,6 +106,7 @@ label start:
 
 
     #Сцена 2.1
+    play music musstreet
     scene bg nightstreetl
     show frontg:
         xalign 0.9 yalign 1.1
@@ -112,26 +126,47 @@ label start:
     hide anonymclose
     show anonymopen:
         xalign 0.1 yalign 8.6
-    a "Не ходи такой
-поникший"
-    a "Если тебя мучает что-то,или ты не знаешь как правильно поступить в
-какой-либо ситуации,то просто действую"
-    a "Любой шаг-движение вперед"
+    a "Привет, ты выглядишь заблудившимся.
+Разберешься с проблемой?"
+    hide anonymopen
+    show anonymclose:
+        xalign 0.1 yalign 8.6
+    e "«Я пытаюсь создать сайт для своей игры, но не могу освоить JavaScript. Я
+рассчитывал обратиться в компанию Эверест для получения помощи,"
+    e "Но моя голова
+начала болеть, и я не уверен, что это хорошая идея"
+    hide anonymclose
+    show anonymopen:
+        xalign 0.1 yalign 8.6
+    a "«Иногда важно действовать так, как велит сердце."
+    a "Но помни"
+    a "Всегда полезно
+получить помощь от тех, кто уже прошел этот путь."
     hide anonymopen
     show anonymclose:
         xalign 0.1 yalign 8.6
     "Закончив свою речь,мужчина быстро начал уходить"
     hide anonymclose
-    "Главный герой точно решил,что
-будет обращаться в компанию «Everest»"
+    menu:
+        "Что делать? Обращаться ли главному герою в компанию Эверест?"
+        "Обратиться за помощью в компанию Эверест":
+            jump help_accept
+        "Не обращаться за помощью в компанию Эверест":
+            jump help_refuse
+    return
+    
 
+# 1 развилка событий с незнакомцем
 
-
+# Герой соглашается обратиться за помощью
+play music musnormal
+label help_accept:
+    "Главный герой решает обратиться в компанию Эверест за помощью"
     # Сцена 3
     scene bg night
     show frontg
     "Главный герой написал письмо на почту о помощи с проблемой в
-компанию"
+    компанию"
     scene black with off
     pause 1.0
     scene bg day with onn
@@ -198,7 +233,7 @@ label start:
 добрый,вы к кому"
     e "Я к лучшим разработчикам"
     npc "Тогда вам точно сюда,мне они очень помогли и вам помогут"
-    npc "Начальник компании пригласил подняться в
+    npc "Начальник компании просил подняться в
 кабинет"
     scene bg mainoffice
     show frontg:
@@ -206,9 +241,53 @@ label start:
     show neutral:
         xalign -0.1 yalign 1.1
     will "Ты уже знаешь,к какому наставнику ты пойдешь обучаться?"
-    e "Нет,но я кажется выбрал,это будет тот молодой человек,которой молчит"
+    e "Нет,но я кажется выбрал,это будет тот молодой человек в серой футболке, 
+        с которым я встретился по пути к вам"
     will "Отлично,тогда приступайте"
-    "Они отправились в его кабинет,чтобы изучить всё с начала и попробовать создать на
+    "Он отправился к нему,чтобы изучить всё с начала и попробовать создать на
 практике приложение"
-    "..."
+    hide neutral
+    hide neutral
+    show bg inoffice
+    show npcchara:
+        xalign 0.1 yalign 1.1
+    "[charactername] начинает учиться у опытного разработчика компании Эверест"
+    "Разработчик объясняет ему основной синтаксис и принципы программирования на Javascript"
+    scene black with off
+    pause 1.0
+    scene bg day with onn
+    "[charactername] в итоге создает свой проект на Javascript"
+    "Благодаря помощи опытного разработчика, он стал хорошим разработчиком, и
+теперь сможет создавать интересные проекты на Javascript"
+    scene bg night
+    show egor
+    "Конец"
+    play music end
+    jump creditz
+    return
+
+
+# 2 развилка событий с незнакомцем
+
+# Герой отказывается попросить помощи у компании
+label help_refuse:
+    play music musnormal
+    "Главный герой, взвесив свои возможности, решает продолжить изучение JavaScript
+    самостоятельно и не обращаться в компанию Эверест"
+
+    scene bg night
+    scene black with off
+    pause 1.0
+    scene bg day with onn
+    show frontg
+    "В течение нескольких дней пытается разобраться в JavaScript самостоятельно"
+    "Но,
+несмотря на упорные попытки его прогресс замедляется, и он теряет веру в свои
+способности."
+    "Его игровой проект оказывается сложным в реализации, и он чувствует,
+что он застрял"
+    "В итоге [charactername] разочаровался и потерял веру в свои способности разработчика"
+    "Конец"
+    play music end
+    jump creditz
     return
