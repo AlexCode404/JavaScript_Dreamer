@@ -12,7 +12,7 @@
 ##
 ## Символы "_()", окружающие название, отмечают его как пригодное для перевода.
 
-define config.name = _("Novel")
+define config.name = _("{size=60}Java    {p}   Dreamer{/size}")
 
 
 ## Определяет, показывать ли заголовок, данный выше, на экране главного меню.
@@ -23,13 +23,21 @@ define gui.show_name = True
 
 ## Версия игры.
 
-define config.version = "0.5beta"
+define config.version = "1.0release"
 
 
 ## Текст, помещённый в экран "Об игре". Поместите текст между тройными скобками.
 ## Для отделения абзацев оставляйте между ними пустую строку.
 
-define gui.about = _p("""
+define gui.about = _p(""" 
+Действие визуальной новеллы происходит в наше время. Главный герой, подросток, является студентом и в один момент решает создать сайт, на котором люди со всего мира смогут собираться и общаться онлайн с общей целью моральной поддержи друг друга в их деятельности. Вам предстоит помочь главному герою с созданием сайта. От ваших действий будет зависеть продолжение игры.
+{p}
+Игра сделана командой - Козырные остряки
+{p}
+{p}
+Материалы взяты из группы: https://vk.com/ayri_attic {p} Music: Magic Escape Room by Kevin MacLeod {p}Free download: https://filmmusic.io/song/10113-magic-escape-room {p}Licensed under CC BY 4.0: https://filmmusic.io/standard-license {p} Music: Space Jazz by Kevin MacLeod {p}Free download: https://filmmusic.io/song/8328-space-jazz {p}Licensed under CC BY 4.0: https://filmmusic.io/standard-license {p}Music: Waltz Primordial (feat. Alexander Nakarada) by Kevin MacLeod {p}Free download: https://filmmusic.io/song/7929-waltz-primordial-feat-alexander-nakarada {p}Licensed under CC BY 4.0: https://filmmusic.io/standard-license {p} Music: Nuh Na Nuh by Kevin MacLeod {p} Free download: https://filmmusic.io/song/6429-nuh-na-nuh {p} Licensed under CC BY 4.0: https://filmmusic.io/standard-license            
+{p}
+
 """)
 
 
@@ -37,7 +45,7 @@ define gui.about = _p("""
 ## постройке дистрибутивов. Оно должно содержать текст формата ASCII и не должно
 ## содержать пробелы, двоеточия и точки с запятой.
 
-define build.name = "Novel"
+define build.name = "JavaDreamer"
 
 
 ## Звуки и музыка ##############################################################
@@ -151,7 +159,7 @@ define config.save_directory = "Novel-1699646904"
 ##
 ## Иконка, показываемая на панели задач или на dock.
 
-define config.window_icon = "gui/window_icon.png"
+define config.window_icon = "gui/jd_logo2.png"
 
 
 ## Настройка Дистрибутива ######################################################
